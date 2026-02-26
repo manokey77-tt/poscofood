@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>포스코 임직원 특별 혜택 - LG유플러스</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 모바일 앱 화면 느낌을 주기 위한 설정 */
+        body { background-color: #f3f4f6; }
+        .mobile-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            position: relative;
+            padding-bottom: 90px; /* 하단 버튼 공간 */
+        }
+        /* 스크롤바 숨기기 (모바일 뷰용) */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* 팝업 애니메이션 */
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="text-gray-800 font-sans antialiased">
+
+<div class="mobile-container">
+
+    <!-- 1 & 2단계: 히어로 섹션 -->
+    <section class="relative bg-slate-800 text-white overflow-hidden pb-12">
+        <!-- 첨부된 이미지를 배경으로 적용 -->
+        <img src="mainbanner.jpg" alt="식단표 연계 메인 배너" class="absolute inset-0 w-full h-full object-cover">
+        <!-- 텍스트 가독성을 위한 어두운 그라데이션 오버레이 -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-800/60 to-slate-900/90"></div>
+        
+        <div class="relative z-10 px-5 pt-8 pb-4 text-center">
+            <!-- 긴장감 부여: 타이머 -->
+            <div class="inline-block bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 animate-pulse">
+                ⏳ 게릴라 특가 종료까지 <span id="countdown">03:15:42</span>
+            </div>
+            
+            <p class="text-slate-300 text-sm font-medium mb-2">SKT/KT 고객님, 통신사 이동의 기회!</p>
+            <h1 class="text-3xl font-extrabold leading-tight mb-4 break-keep">
+                쓰던 기계 그대로<br>인터넷, TV까지 결합하면
+            </h1>
+            
+            <!-- 시각적 중심: 선물 상자 3D 느낌 (이모지로 대체) -->
+            <div class="text-7xl my-6 drop-shadow-2xl animate-bounce">
+                🎁
+            </div>
+            
+            <!-- 숫자 강조 -->
+            <div class="bg-gradient-to-r from-fuchsia-600 to-pink-500 rounded-xl p-4 shadow-lg border border-pink-400">
+                <p class="text-sm font-bold text-pink-100 mb-1">포스코 임직원 단독</p>
+                <p class="text-4xl font-extrabold text-white">최대 100만 원 혜택</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3단계: 주요 혜택 및 상품 구성 -->
+    <section class="px-5 py-8 bg-gray-50">
+        <h2 class="text-xl font-bold mb-5 text-center text-gray-900">놓칠 수 없는 2가지 특권</h2>
+        
+        <!-- 혜택 1: 결합 -->
+        <div class="bg-white rounded-2xl p-5 mb-4 shadow-sm border border-gray-100 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-fuchsia-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">BEST</div>
+            <div class="flex items-center mb-3">
+                <span class="text-3xl mr-3">📺</span>
+                <div>
+                    <h3 class="font-bold text-lg">USIM 번호이동 + 인터넷/TV</h3>
+                    <p class="text-gray-500 text-sm">기기 변경 없이 통신비만 낮추세요</p>
+                </div>
+            </div>
+            <div class="bg-fuchsia-50 rounded-lg p-3 text-center">
+                <p class="text-fuchsia-700 font-extrabold text-xl">최대 100만 원 지원</p>
+                <p class="text-gray-500 text-xs mt-1">*유심만 통신사 이동해도 30만 원 제공</p>
+            </div>
+        </div>
+
+        <!-- 혜택 2: 기기 -->
+        <div class="bg-white rounded-2xl p-5 mb-6 shadow-sm border border-gray-100">
+            <div class="flex items-center mb-3">
+                <span class="text-3xl mr-3">📱</span>
+                <div>
+                    <h3 class="font-bold text-lg">갤럭시 S26 임직원 특가</h3>
+                    <p class="text-gray-500 text-sm">최신 프리미엄 스마트폰 파격 할인</p>
+                </div>
+            </div>
+            <div class="bg-gray-100 rounded-lg p-3 text-center">
+                <p class="text-gray-800 font-extrabold text-xl">비공개 파격 지원금 적용</p>
+            </div>
+        </div>
+
+        <!-- 맞춤형 혜택 배너 -->
+        <div class="bg-amber-100 border border-amber-300 rounded-xl p-4 flex items-center justify-between cursor-pointer" onclick="openModal('coffee')">
+            <div class="flex-1">
+                <p class="text-amber-800 font-bold text-sm mb-1">🎁 직장인 맞춤 혜택</p>
+                <p class="text-amber-900 font-extrabold text-base leading-snug">본인인증 단골 등록 시<br>점심시간 커피 쿠폰 100% 증정!</p>
+            </div>
+            <div class="text-4xl ml-2 drop-shadow-md">☕</div>
+        </div>
+    </section>
+
+    <!-- 4단계: 신뢰 구축 및 소셜 프루프 (파스텔 톤으로 수정됨) -->
+    <section class="px-5 py-10 bg-indigo-50 text-slate-800">
+        <!-- 신뢰성 뱃지 -->
+        <div class="text-center mb-6">
+            <span class="inline-block bg-white text-indigo-600 font-bold text-xs px-3 py-1 rounded-full border border-indigo-200 shadow-sm">
+                🏢 경북/포항 지역 담당 공식 특판
+            </span>
+        </div>
+
+        <!-- 공감과 위로 -->
+        <div class="text-center mb-10">
+            <h2 class="text-xl font-bold text-indigo-700 mb-3">"직원의 한마디"</h2>
+            <p class="text-slate-600 text-sm leading-relaxed break-keep">
+                "매일 바쁘게 돌아가는 현장과 사무실,<br>적어도 통신비 고민만큼은 저희가 확실히 덜어드리겠습니다.<br>가장 가까운 곳에서 책임지겠습니다."
+            </p>
+        </div>
+
+        <!-- 리뷰 (가로 스크롤) -->
+        <div class="flex overflow-x-auto no-scrollbar gap-4 pb-4">
+            <div class="min-w-[240px] bg-white rounded-xl p-4 border border-indigo-100 shadow-sm">
+                <div class="text-yellow-400 text-sm mb-2">★★★★★</div>
+                <p class="text-sm text-slate-700 mb-2 font-medium">"점심 먹고 잠깐 카톡으로 물어봤는데 처리 속도 엄청 빠르네요. 지원금도 당일 입금 받았습니다."</p>
+                <p class="text-xs text-slate-500">- 광양제철소 김** 님</p>
+            </div>
+            <div class="min-w-[240px] bg-white rounded-xl p-4 border border-indigo-100 shadow-sm">
+                <div class="text-yellow-400 text-sm mb-2">★★★★★</div>
+                <p class="text-sm text-slate-700 mb-2 font-medium">"가족 결합 설명 듣고 인터넷까지 바꿨는데 진짜 100만원 혜택 받았습니다. 강추합니다!"</p>
+                <p class="text-xs text-slate-500">- 포항 본사 이** 님</p>
+            </div>
+            <div class="min-w-[240px] bg-white rounded-xl p-4 border border-indigo-100 shadow-sm">
+                <div class="text-yellow-400 text-sm mb-2">★★★★★</div>
+                <p class="text-sm text-slate-700 mb-2 font-medium">"커피 쿠폰 바로 날아오네요ㅎㅎ 상담도 친절하고 S26 가격 너무 좋습니다."</p>
+                <p class="text-xs text-slate-500">- 서울 포스코센터 박** 님</p>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="mt-8">
+            <h3 class="text-lg font-bold mb-4 text-indigo-900">자주 묻는 질문</h3>
+            <div class="bg-white rounded-lg border border-indigo-100 overflow-hidden shadow-sm">
+                <button class="w-full px-4 py-4 text-left font-medium text-sm flex justify-between items-center focus:outline-none" onclick="toggleFaq()">
+                    <span class="text-slate-800">Q. 가족관계 증명 기준이 어떻게 되나요?</span>
+                    <span id="faq-icon" class="text-indigo-400 transition-transform duration-300">▼</span>
+                </button>
+                <div id="faq-answer" class="px-4 pb-4 text-sm text-slate-600 hidden border-t border-indigo-50 pt-3 bg-indigo-50/50">
+                    A. 임직원 본인 기준 가족관계증명서 1장 이내에 등록된 가족 모두 혜택 적용 가능합니다.
+                </div>
+            </div>
+        </div>
+
+        <!-- 빠른 전화 상담 섹션 추가 -->
+        <div class="mt-10 bg-white rounded-2xl p-6 border border-indigo-200 shadow-md text-center">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 mb-3 text-2xl drop-shadow-sm">
+                📞
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 mb-1">빠른 전화 상담</h3>
+            <p class="text-sm text-slate-500 mb-4 break-keep">궁금한 점이 있으시다면 언제든 편하게 전화주세요!</p>
+            
+            <div class="bg-indigo-50 rounded-xl p-4 mb-4 border border-indigo-100">
+                <p class="text-xs text-indigo-500 font-bold mb-1">포스코 전담 매니저</p>
+                <div class="flex items-center justify-center space-x-2">
+                    <span class="text-lg font-extrabold text-indigo-900">김만호</span>
+                    <span class="text-indigo-300">|</span>
+                    <a href="tel:01080803423" class="text-lg font-extrabold text-indigo-600 hover:text-indigo-800">010-8080-3423</a>
+                </div>
+            </div>
+            
+            <a href="tel:01080803423" class="flex items-center justify-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-sm transition-colors text-sm">
+                <span class="mr-2 text-lg">📲</span> 매니저에게 바로 전화걸기
+            </a>
+        </div>
+    </section>
+
+    <div class="h-10 bg-indigo-50"></div> <!-- 여백 -->
+
+    <!-- 5단계: 플로팅 버튼 & 하단 고정 버튼 -->
+    <!-- 우측 하단 둥근 플로팅 버튼 (상담) -->
+    <div class="fixed bottom-28 right-4 sm:right-[calc(50%-220px)] z-40">
+        <button onclick="openModal('kakao')" class="bg-yellow-400 text-yellow-900 w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl border-2 border-white animate-bounce">
+            💬
+        </button>
+    </div>
+
+    <!-- 하단 고정 메인 버튼 영역 -->
+    <div class="fixed bottom-0 left-0 w-full sm:w-[480px] sm:left-1/2 sm:-ml-[240px] bg-white border-t border-gray-200 p-4 z-50 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
+        <button onclick="openModal('kakao')" class="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-extrabold text-lg py-4 rounded-xl shadow-md transition-colors">
+            지금 바로 최대 혜택 확인하기<br>
+            <span class="text-sm font-medium">(카카오톡 1:1 간편 문의)</span>
+        </button>
+    </div>
+
+    <!-- 팝업 모달 (사후 액션 유도) -->
+    <div id="cta-modal" class="fixed inset-0 bg-black/70 z-[60] hidden flex items-center justify-center px-4 fade-in">
+        <div class="bg-white rounded-2xl w-full max-w-sm overflow-hidden text-center shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-3 right-4 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            
+            <div class="bg-amber-100 py-6">
+                <div class="text-5xl mb-2">☕</div>
+                <h3 class="font-extrabold text-xl text-amber-900">잠깐! 커피 쿠폰 먼저 챙기세요</h3>
+            </div>
+            
+            <div class="p-6">
+                <p class="text-gray-600 text-sm mb-5 break-keep">
+                    상담 전, <span class="font-bold text-fuchsia-600">본인인증하고 단골 등록</span>하시면<br>
+                    무조건 아이스 아메리카노를 쏩니다!
+                </p>
+                
+                <a href="#" onclick="alert('단골 등록(본인인증) 페이지로 이동합니다.'); closeModal();" class="block w-full bg-amber-500 text-white font-bold py-3 rounded-xl mb-3 hover:bg-amber-600 transition">
+                    👉 본인 인증하고 단골 등록하기
+                </a>
+                
+                <a href="#" onclick="alert('카카오톡 1:1 채팅방으로 이동합니다.'); closeModal();" class="block w-full bg-gray-100 text-gray-600 font-medium py-3 rounded-xl hover:bg-gray-200 transition text-sm">
+                    괜찮아요, 바로 카톡 문의할게요
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // 카운트다운 타이머 로직 (예시: 3시간 15분)
+    let time = 3 * 3600 + 15 * 60 + 42; 
+    const timerEl = document.getElementById('countdown');
+    
+    setInterval(() => {
+        time--;
+        if(time < 0) time = 0;
+        let h = Math.floor(time / 3600);
+        let m = Math.floor((time % 3600) / 60);
+        let s = time % 60;
+        timerEl.innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    }, 1000);
+
+    // FAQ 아코디언 토글
+    function toggleFaq() {
+        const answer = document.getElementById('faq-answer');
+        const icon = document.getElementById('faq-icon');
+        if (answer.classList.contains('hidden')) {
+            answer.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            answer.classList.add('hidden');
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    // 모달(팝업) 제어
+    const modal = document.getElementById('cta-modal');
+    function openModal(type) {
+        modal.classList.remove('hidden');
+    }
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
+</script>
+
+</body>
+</html>
