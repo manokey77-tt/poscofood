@@ -15,15 +15,10 @@
             min-height: 100vh;
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
             position: relative;
-            padding-bottom: 90px; /* 하단 버튼 공간 */
         }
         /* 스크롤바 숨기기 (모바일 뷰용) */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* 팝업 애니메이션 */
-        .fade-in { animation: fadeIn 0.3s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body class="text-gray-800 font-sans antialiased">
@@ -51,7 +46,8 @@
             <!-- 숫자 강조 -->
             <div class="bg-gradient-to-r from-fuchsia-600 to-pink-500 rounded-xl p-4 shadow-lg border border-pink-400">
                 <p class="text-sm font-bold text-pink-100 mb-1">포스코 임직원 단독</p>
-                <p class="text-4xl font-extrabold text-white">최대 100만 원 혜택</p>
+                <p class="text-4xl font-extrabold text-white mb-2">현금 100만 원 지급</p>
+                <p class="text-xs text-white/90 font-medium break-keep">*1인 결합 기준이며, 2인 결합시 현금 120만원 지급</p>
             </div>
         </div>
     </section>
@@ -71,8 +67,9 @@
                 </div>
             </div>
             <div class="bg-fuchsia-50 rounded-lg p-3 text-center">
-                <p class="text-fuchsia-700 font-extrabold text-xl">최대 100만 원 지원</p>
-                <p class="text-gray-500 text-xs mt-1">*유심만 통신사 이동해도 30만 원 제공</p>
+                <p class="text-fuchsia-700 font-extrabold text-xl mb-1">현금 100만 원 지급</p>
+                <p class="text-fuchsia-600/80 text-[11px] mb-1">*1인 결합 기준이며, 2인 결합시 현금 120만원 지급</p>
+                <p class="text-gray-500 text-xs mt-1 border-t border-fuchsia-100 pt-1">*유심만 통신사 이동해도 30만 원 제공</p>
             </div>
         </div>
 
@@ -93,6 +90,50 @@
 
     <!-- 4단계: 신뢰 구축 및 소셜 프루프 (파스텔 톤으로 수정됨) -->
     <section class="px-5 py-10 bg-indigo-50 text-slate-800">
+        
+        <!-- 간편 문자 상담 신청 폼 추가 -->
+        <div class="bg-white rounded-2xl p-6 border border-indigo-200 shadow-md text-left mb-6">
+            <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center">
+                <span class="mr-2">📝</span> 간편 상담 신청
+            </h3>
+            <form onsubmit="sendSmsForm(event)">
+                <div class="mb-4">
+                    <label class="block text-sm font-bold text-slate-700 mb-1">사용 중인 통신사</label>
+                    <select id="carrier" class="w-full border border-indigo-200 rounded-xl p-3 bg-indigo-50/50 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
+                        <option value="" disabled selected>통신사를 선택해주세요</option>
+                        <option value="SKT">SKT</option>
+                        <option value="KT">KT</option>
+                        <option value="LGU+">LG U+</option>
+                        <option value="알뜰폰">알뜰폰</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-bold text-slate-700 mb-1">상담 가능 시간</label>
+                    <select id="time" class="w-full border border-indigo-200 rounded-xl p-3 bg-indigo-50/50 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
+                        <option value="" disabled selected>시간대를 선택해주세요</option>
+                        <option value="오전">오전</option>
+                        <option value="점심">점심</option>
+                        <option value="오후">오후</option>
+                        <option value="저녁">저녁</option>
+                    </select>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-bold text-slate-700 mb-1">희망 상담 방식</label>
+                    <select id="method" class="w-full border border-indigo-200 rounded-xl p-3 bg-indigo-50/50 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
+                        <option value="" disabled selected>상담 방식을 선택해주세요</option>
+                        <option value="문자">💬 문자로 상담</option>
+                        <option value="전화">📞 전화로 상담</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-sm transition-colors text-sm">
+                    상담 신청 문자 보내기
+                </button>
+            </form>
+        </div>
+
         <!-- 빠른 전화 상담 섹션 추가 -->
         <div class="bg-white rounded-2xl p-6 border border-indigo-200 shadow-md text-center">
             <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 mb-3 text-2xl drop-shadow-sm">
@@ -123,61 +164,33 @@
 
     <div class="h-10 bg-indigo-50"></div> <!-- 여백 -->
 
-    <!-- 5단계: 플로팅 버튼 & 하단 고정 버튼 -->
-    <!-- 우측 하단 둥근 플로팅 버튼 (상담) -->
-    <div class="fixed bottom-28 right-4 sm:right-[calc(50%-220px)] z-40">
-        <button onclick="openModal('kakao')" class="bg-yellow-400 text-yellow-900 w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl border-2 border-white animate-bounce">
-            💬
-        </button>
-    </div>
-
-    <!-- 하단 고정 메인 버튼 영역 -->
-    <div class="fixed bottom-0 left-0 w-full sm:w-[480px] sm:left-1/2 sm:-ml-[240px] bg-white border-t border-gray-200 p-4 z-50 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
-        <button onclick="openModal('kakao')" class="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-extrabold text-lg py-4 rounded-xl shadow-md transition-colors">
-            지금 바로 최대 혜택 확인하기<br>
-            <span class="text-sm font-medium">(카카오톡 1:1 간편 문의)</span>
-        </button>
-    </div>
-
-    <!-- 팝업 모달 (사후 액션 유도) -->
-    <div id="cta-modal" class="fixed inset-0 bg-black/70 z-[60] hidden flex items-center justify-center px-4 fade-in">
-        <div class="bg-white rounded-2xl w-full max-w-sm overflow-hidden text-center shadow-2xl relative">
-            <button onclick="closeModal()" class="absolute top-3 right-4 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
-            
-            <div class="bg-amber-100 py-6">
-                <div class="text-5xl mb-2">☕</div>
-                <h3 class="font-extrabold text-xl text-amber-900">잠깐! 커피 쿠폰 먼저 챙기세요</h3>
-            </div>
-            
-            <div class="p-6">
-                <p class="text-gray-600 text-sm mb-5 break-keep">
-                    상담 전, <span class="font-bold text-fuchsia-600">본인인증하고 단골 등록</span>하시면<br>
-                    무조건 아이스 아메리카노를 쏩니다!
-                </p>
-                
-                <a href="#" onclick="alert('단골 등록(본인인증) 페이지로 이동합니다.'); closeModal();" class="block w-full bg-amber-500 text-white font-bold py-3 rounded-xl mb-3 hover:bg-amber-600 transition">
-                    👉 본인 인증하고 단골 등록하기
-                </a>
-                
-                <a href="#" onclick="alert('카카오톡 1:1 채팅방으로 이동합니다.'); closeModal();" class="block w-full bg-gray-100 text-gray-600 font-medium py-3 rounded-xl hover:bg-gray-200 transition text-sm">
-                    괜찮아요, 바로 카톡 문의할게요
-                </a>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 <script>
-    // 모달(팝업) 제어
-    const modal = document.getElementById('cta-modal');
-    function openModal(type) {
-        modal.classList.remove('hidden');
-    }
-    function closeModal() {
-        modal.classList.add('hidden');
+    // 폼 데이터를 가져와서 문자 메시지로 전송하는 기능
+    function sendSmsForm(event) {
+        event.preventDefault(); // 기본 폼 제출 동작 방지
+        
+        // 입력값 가져오기
+        const carrier = document.getElementById('carrier').value;
+        const time = document.getElementById('time').value;
+        const method = document.getElementById('method').value;
+        
+        // 문자 메시지 내용 구성
+        const message = `[포스코 특판 상담 신청]\n- 통신사: ${carrier}\n- 상담시간: ${time}\n- 희망방법: ${method}`;
+        const encodedMessage = encodeURIComponent(message);
+        
+        // 기기별 문자 전송 링크 분기 처리 (iOS와 Android 파라미터 차이 해결)
+        const userAgent = navigator.userAgent.toLowerCase();
+        let smsLink = `sms:01081815811?body=${encodedMessage}`;
+        
+        if (userAgent.indexOf("iphone") > -1 || userAgent.indexOf("ipad") > -1) {
+            smsLink = `sms:01081815811&body=${encodedMessage}`;
+        }
+        
+        // 문자 앱 실행
+        window.location.href = smsLink;
     }
 </script>
-
 </body>
 </html>
